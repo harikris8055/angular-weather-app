@@ -1,0 +1,42 @@
+<div class="widget-container">
+  <div
+    [ngStyle]="{
+      'background-image': displayData.type
+        ? 'url(../../assets/' + displayData.type + '.webp)'
+        : ''
+    }"
+    class="weather-widget"
+    @fade
+  >
+    <div class="search-bar">
+      <input
+        type="text"
+        id="search-input"
+        list="city-list"
+        class="form-control"
+        placeholder="Search Location"
+        [(ngModel)]="searchString"
+      />
+      <datalist id="city-list">
+        <option
+          *ngFor="let weather of weatherData"
+          value="{{ weather.city }}"
+        ></option>
+      </datalist>
+      <button type="button" class="btn btn-link" (click)="search()">
+        <img
+          src="../../assets/search.png"
+          alt="Search Icon"
+          class="search-icon"
+        />
+      </button>
+    </div>
+    <div>
+      <div class="weather-location">
+        {{ displayData.city }}, {{ displayData.country }}
+      </div>
+      <div class="weather-description">{{ displayData.type }}</div>
+      <div class="weather-temperature">{{ displayData.temperature }}°C</div>
+    </div>
+  </div>
+</div>
